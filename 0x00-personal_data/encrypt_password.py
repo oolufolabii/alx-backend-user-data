@@ -6,9 +6,9 @@ import bcrypt
 
 def hash_password(password) -> bytes:
     """Return a salted hashed password"""
-    return bcrypt.hashpw(password.encode('uft-8'), bcrypt.gensalt())
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
 
 def is_valid(hashed_password: bytes, password: str) -> bool:
     """Checks Hashed password against given password"""
-    return bcrypt.checkpw(password.encode('uft-8'), hash_password)
+    return bcrypt.checkpw(password.encode('utf-8'), hashed_password)
