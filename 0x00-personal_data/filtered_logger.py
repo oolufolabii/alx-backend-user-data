@@ -14,6 +14,7 @@ regex_pattern = {
 
 PII_FIELD = ("name", "email", "phone", "ssn", "password")
 
+
 def filter_datum(
         fields: List[str], redaction: str, message: str, separator: str,
 ) -> str:
@@ -51,6 +52,7 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     )
     return connection
 
+
 def main():
     """Logs the information about user records in a table.
     """
@@ -73,7 +75,6 @@ def main():
             info_logger.handle(log_record)
 
 
-
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
     """
@@ -81,7 +82,7 @@ class RedactingFormatter(logging.Formatter):
     REDACTION = "***"
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
     SEPARATOR = ";"
-    
+
     FORMAT_FIELD = ('name', 'levelname', 'asctime', 'message')
 
     def __init__(self, fields: List[str]):
