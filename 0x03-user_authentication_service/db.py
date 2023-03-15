@@ -48,11 +48,19 @@ class DB:
         return user
 
     def update_user(self, user_id: int, **kwargs) -> None:
-        """method that takes as argument a required user_id integer and arbitrary
-        keyword arguments, and returns None"""
-        _id = self.find_user_by(id=user_id)
+        """Updates a user based on a given id.
+        """
+        user = self.find_user_by(id=user_id)
+        if user is None:
+            return
+        update_source = {}
         for key, value in kwargs.items():
-            if not hasattr(_id, key):
-                raise ValueError
-            setattr(_id, key, value)
+            if hasattr(User, key):
+                update_source[getattr(User, key)] = value
+            else:
+                raise ValueError()
+        self._session.query(User).filter(User.id == user_id).update(
+            update_source,
+            synchronize_session=False,
+        )
         self._session.commit()
