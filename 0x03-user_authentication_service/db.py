@@ -45,7 +45,7 @@ class DB:
             create_user = None
         return create_user
 
-    def find_user_by(self, **kwargs):
+    def find_user_by(self, **kwargs) -> User:
         """Finds a user based on a set of filters.
         """
         if kwargs is None:
