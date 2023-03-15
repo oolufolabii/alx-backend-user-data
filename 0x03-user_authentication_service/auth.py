@@ -48,6 +48,3 @@ class Auth:
         else:
             return bcrypt.checkpw(password=password.encode('utf-8'),
                                   hashed_password=user.hashed_password)
-    
-
-        
